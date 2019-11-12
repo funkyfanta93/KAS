@@ -7,10 +7,10 @@ public class Hotel {
 	private int enkeltPris;
 	private int dobbeltPris;
 
-	private final ArrayList<Tilvalg> tilvalg = new ArrayList<>();
+	private final ArrayList<Tilvalg> muligTilvalg = new ArrayList<>();
 
 	public ArrayList<Tilvalg> getTilvalg() {
-		return new ArrayList<>(tilvalg);
+		return new ArrayList<>(muligTilvalg);
 	}
 
 	public Hotel(String navn, int enkeltPris, int dobbeltPris) {
@@ -41,6 +41,18 @@ public class Hotel {
 
 	public void setPris(int dobbeltPris) {
 		this.dobbeltPris = dobbeltPris;
+	}
+
+	public void addTilvalg(Tilvalg tilvalg) {
+		if (!muligTilvalg.contains(tilvalg)) {
+			muligTilvalg.add(tilvalg);
+		}
+	}
+
+	public void removeTilvalg(Tilvalg tilvalg) {
+		if (muligTilvalg.contains(tilvalg)) {
+			muligTilvalg.remove(tilvalg);
+		}
 	}
 
 }
