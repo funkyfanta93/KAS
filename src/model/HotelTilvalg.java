@@ -1,8 +1,8 @@
 package model;
 
 public class HotelTilvalg {
-	private String navn = "";
-	private int pris = 0;
+	private String navn;
+	private int pris;
 
 	public HotelTilvalg(String navn, int pris) {
 		this.navn = navn;

@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDateTime;
 
 public class Udflugt {
-	private int pris = 0;
+	private int pris;
 	private boolean frokost;
 	private LocalDateTime dato;
 
