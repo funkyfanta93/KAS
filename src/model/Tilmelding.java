@@ -11,24 +11,17 @@ public class Tilmelding {
 	private Deltager deltager;
 	private Konference konferance;
 
-	private ArrayList<Hotel> hoteller = new ArrayList<>();
-	private ArrayList<Tilvalg> tilvalg = new ArrayList<>();
+	private Hotel hotel;
+	private final ArrayList<Tilvalg> tilvalg = new ArrayList<>();
 
 	public void addHotel(Hotel hotel) {
-		if (!hoteller.contains(hotel)) {
-			hoteller.add(hotel);
-		}
+		this.hotel = hotel;
+
 	}
 
 	public void addTilvalg(Tilvalg tilvalg) {
 		if (!this.tilvalg.contains(tilvalg)) {
 			this.tilvalg.add(tilvalg);
-		}
-	}
-
-	public void removeHotel(Hotel hotel) {
-		if (hoteller.contains(hotel)) {
-			hoteller.remove(hotel);
 		}
 	}
 
@@ -86,6 +79,12 @@ public class Tilmelding {
 		this.ankomstDato = ankomst;
 		this.afrejseDato = afrejse;
 		this.konferance = konference;
+
+	}
+
+	public void beregnPris() {
+		int pris = 0;
+		pris += this.konferance.getPris() * this.konferance.getLængde();
 
 	}
 
