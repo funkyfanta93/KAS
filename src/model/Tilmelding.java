@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.time.temporal.ChronoUnit;
 
 public class Tilmelding {
 	private String ledsagerNavn;
@@ -44,6 +45,13 @@ public class Tilmelding {
 		}
 	}
 
+	/**
+	 * 
+	 * Tildmelding med Ledsager og Firma
+	 * 
+	 * 
+	 */
+
 	public Tilmelding(String navn, String adresse, int telefonnr,
 			boolean fordragsholder, String by, LocalDate ankomst,
 			LocalDate afrejse, Firma firma, String ledsagerNavn,
@@ -58,6 +66,13 @@ public class Tilmelding {
 
 	}
 
+	/**
+	 * 
+	 * Tildmelding uden Ledsager med Firma
+	 * 
+	 * 
+	 */
+
 	public Tilmelding(String navn, String adresse, int telefonnr,
 			boolean fordragsholder, String by, LocalDate ankomst,
 			LocalDate afrejse, Firma firma, Konference konference) {
@@ -69,6 +84,13 @@ public class Tilmelding {
 		this.konferance = konference;
 
 	}
+
+	/**
+	 * 
+	 * Tildmelding med Ledsager og uden Firma
+	 * 
+	 * 
+	 */
 
 	public Tilmelding(String navn, String adresse, int telefonnr,
 			boolean fordragsholder, String by, LocalDate ankomst,
@@ -83,12 +105,19 @@ public class Tilmelding {
 
 	}
 
+	/**
+	 * 
+	 * Tildmelding uden Ledsager og Firma
+	 * 
+	 * 
+	 */
+
 	public Tilmelding(String navn, String adresse, int telefonnr,
 			boolean fordragsholder, String by, LocalDate ankomst,
 			LocalDate afrejse, Konference konference) {
 		this.deltager = new Deltager(navn, adresse, by, telefonnr,
 				fordragsholder);
-		this.ledsager = true;
+		this.ledsager = false;
 		this.ankomstDato = ankomst;
 		this.afrejseDato = afrejse;
 		this.konferance = konference;
@@ -97,17 +126,25 @@ public class Tilmelding {
 
 	public int beregnPris() {
 		int pris = 0;
-		pris += this.konferance.getPris() * this.konferance.getLængde();
+		if (!deltager.isFordragsholder()) {
+			pris += this.konferance.getPris()
+					* ChronoUnit.DAYS.between(ankomstDato, afrejseDato);
+		}
 		if (hotel != null) {
 			if (ledsager) {
-				pris += this.hotel.getDobbeltPris();
+				pris += this.hotel.getDobbeltPris()
+						* (ChronoUnit.DAYS.between(ankomstDato, afrejseDato)
+								- 1);
 			} else {
-				pris += this.hotel.getEnkeltPris();
+				pris += this.hotel.getEnkeltPris()
+						* (ChronoUnit.DAYS.between(ankomstDato, afrejseDato)
+								- 1);
 			}
 		}
 		if (ledsager) {
-			for (Tilvalg tilvalg2 : tilvalg) {
-				pris += tilvalg2.getPris();
+			for (Udflugt udflugt : udflugter) {
+
+				pris += udflugt.getPris();
 			}
 		}
 		return pris;
