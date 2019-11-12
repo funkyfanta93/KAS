@@ -7,7 +7,6 @@ public class Firma {
 
 	public Firma(String navn, int CVR, int telefonNr) {
 		this.navn = navn;
-		this.CVR = CVR;
 		this.telefonNr = telefonNr;
 	}
 
@@ -17,14 +16,6 @@ public class Firma {
 
 	public void setNavn(String navn) {
 		this.navn = navn;
-	}
-
-	public int getCVR() {
-		return CVR;
-	}
-
-	public void setCVR(int CVR) {
-		this.CVR = CVR;
 	}
 
 	public int getTelefonNr() {
