@@ -1,14 +1,26 @@
 package model;
 
+import java.time.LocalDateTime;
+
 public class Konference {
 	private String navn = "";
-	private String dato = "";
+	private LocalDateTime dato = LocalDateTime.of(2012, 12, 12, 12, 12);
 	private int pris = 0;
+	private int længde = 0;
 
-	public Konference(String navn, String dato, int pris) {
+	public Konference(String navn, LocalDateTime dato, int pris, int længde) {
 		this.navn = navn;
 		this.dato = dato;
 		this.pris = pris;
+		this.længde = længde;
+	}
+
+	public int getLængde() {
+		return længde;
+	}
+
+	public void setLængde(int længde) {
+		this.længde = længde;
 	}
 
 	public void setNavn(String navn) {
@@ -19,11 +31,11 @@ public class Konference {
 		return navn;
 	}
 
-	public void setDato(String dato) {
+	public void setDato(LocalDateTime dato) {
 		this.dato = dato;
 	}
 
-	public String getDato() {
+	public LocalDateTime getDato() {
 		return dato;
 	}
 

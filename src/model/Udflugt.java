@@ -1,11 +1,13 @@
 package model;
 
+import java.time.LocalDateTime;
+
 public class Udflugt {
 	private int pris = 0;
 	private boolean frokost = false;
-	private String dato = "";
+	private LocalDateTime dato = LocalDateTime.of(2012, 12, 12, 12, 12);
 
-	public Udflugt(int pris, boolean frokost, String dato) {
+	public Udflugt(int pris, boolean frokost, LocalDateTime dato) {
 		this.pris = pris;
 		this.frokost = frokost;
 		this.dato = dato;
@@ -27,11 +29,11 @@ public class Udflugt {
 		return frokost;
 	}
 
-	public void setDato(String dato) {
+	public void setDato(LocalDateTime dato) {
 		this.dato = dato;
 	}
 
-	public String getDato() {
+	public LocalDateTime getDato() {
 		return dato;
 	}
 }
