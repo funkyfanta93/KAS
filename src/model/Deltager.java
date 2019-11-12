@@ -1,27 +1,33 @@
 package model;
 
+import storage.Storage;
+
 public class Deltager {
 	private String navn;
 	private String adresse;
 	private Firma firma;
+	private boolean fordragsholder;
 
 	private String by;
 	private int telefonnr;
 
-	public Deltager(String navn, String adresse, String by, int telefonnr) {
+	public Deltager(String navn, String adresse, String by, int telefonnr,
+			boolean fordragsholder) {
 		this.navn = navn;
 		this.adresse = adresse;
 		this.by = by;
 		this.telefonnr = telefonnr;
+		this.fordragsholder = fordragsholder;
 
 	}
 
 	public Deltager(String navn, String adresse, String by, int telefonnr,
-			Firma firma) {
+			boolean fordragsholder, Firma firma) {
 		this.navn = navn;
 		this.adresse = adresse;
 		this.by = by;
 		this.telefonnr = telefonnr;
+		this.fordragsholder = fordragsholder;
 		this.firma = firma;
 
 	}
@@ -63,6 +69,14 @@ public class Deltager {
 
 	public void setFirma(Firma firma) {
 		this.firma = firma;
+	}
+
+	public boolean isFordragsholder() {
+		return fordragsholder;
+	}
+
+	public void setFordragsholder(boolean fordragsholder) {
+		this.fordragsholder = fordragsholder;
 	}
 
 }

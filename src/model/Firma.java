@@ -5,7 +5,7 @@ public class Firma {
 	private int CVR = 0;
 	private int telefonNr = 0;
 
-	public Firma(String navn, int CVR, int telefonNr) {
+	public Firma(String navn, int telefonNr) {
 		this.navn = navn;
 		this.telefonNr = telefonNr;
 	}
