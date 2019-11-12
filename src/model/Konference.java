@@ -3,9 +3,9 @@ package model;
 public class Konference {
 	private String navn = "";
 	private String dato = "";
-	private double pris = 0;
+	private int pris = 0;
 
-	public Konference(String navn, String dato, double pris) {
+	public Konference(String navn, String dato, int pris) {
 		this.navn = navn;
 		this.dato = dato;
 		this.pris = pris;
@@ -27,11 +27,11 @@ public class Konference {
 		return dato;
 	}
 
-	public void setPris(double pris) {
+	public void setPris(int pris) {
 		this.pris = pris;
 	}
 
-	public double getPris() {
+	public int getPris() {
 		return pris;
 	}
 

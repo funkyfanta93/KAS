@@ -1,29 +1,29 @@
 package model;
 
 public class Udflugt {
-	private double pris = 0;
-	private String frokost = "";
+	private int pris = 0;
+	private boolean frokost = false;
 	private String dato = "";
 
-	public Udflugt(double pris, String frokost, String dato) {
+	public Udflugt(int pris, boolean frokost, String dato) {
 		this.pris = pris;
 		this.frokost = frokost;
 		this.dato = dato;
 	}
 
-	public void setPris(double pris) {
+	public void setPris(int pris) {
 		this.pris = pris;
 	}
 
-	public double getPris() {
+	public int getPris() {
 		return pris;
 	}
 
-	public void setFrokost(String frokost) {
+	public void setFrokost(boolean frokost) {
 		this.frokost = frokost;
 	}
 
-	public String getFrokost() {
+	public boolean getFrokost() {
 		return frokost;
 	}
 
