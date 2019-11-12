@@ -1,12 +1,25 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Konference {
-	private String navn = "";
-	private LocalDateTime dato = LocalDateTime.of(2012, 12, 12, 12, 12);
-	private int pris = 0;
-	private int længde = 0;
+	private String navn;
+	private LocalDateTime dato;
+	private int pris;
+	private int længde;
+
+	private ArrayList<Hotel> hoteller = new ArrayList<>();
+
+	public ArrayList<Hotel> getHoteller() {
+		return new ArrayList<>(hoteller);
+	}
+
+	private ArrayList<Udflugt> udflugter = new ArrayList<>();
+
+	public ArrayList<Udflugt> getUdflugter() {
+		return new ArrayList<>(udflugter);
+	}
 
 	public Konference(String navn, LocalDateTime dato, int pris, int længde) {
 		this.navn = navn;
@@ -45,6 +58,30 @@ public class Konference {
 
 	public int getPris() {
 		return pris;
+	}
+
+	public void addHotel(Hotel hotel) {
+		if (!hoteller.contains(hotel)) {
+			hoteller.add(hotel);
+		}
+	}
+
+	public void removeHotel(Hotel hotel) {
+		if (hoteller.contains(hotel)) {
+			hoteller.remove(hotel);
+		}
+	}
+
+	public void addUdflugt(Udflugt udflugt) {
+		if (!udflugter.contains(udflugt)) {
+			udflugter.add(udflugt);
+		}
+	}
+
+	public void removeUdflugt(Udflugt udflugt) {
+		if (udflugter.contains(udflugt)) {
+			udflugter.remove(udflugt);
+		}
 	}
 
 }
