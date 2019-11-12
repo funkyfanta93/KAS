@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class Udflugt {
 	private int pris = 0;
-	private boolean frokost = false;
-	private LocalDateTime dato = LocalDateTime.of(2012, 12, 12, 12, 12);
+	private boolean frokost;
+	private LocalDateTime dato;
 
 	public Udflugt(int pris, boolean frokost, LocalDateTime dato) {
 		this.pris = pris;
