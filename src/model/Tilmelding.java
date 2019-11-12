@@ -95,7 +95,7 @@ public class Tilmelding {
 
 	}
 
-	public void beregnPris() {
+	public int beregnPris() {
 		int pris = 0;
 		pris += this.konferance.getPris() * this.konferance.getLængde();
 		if (hotel != null) {
@@ -110,6 +110,7 @@ public class Tilmelding {
 				pris += tilvalg2.getPris();
 			}
 		}
+		return pris;
 
 	}
 

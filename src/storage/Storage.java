@@ -8,11 +8,11 @@ public class Storage {
 
 	private static ArrayList<Firma> firmaer = new ArrayList<>();
 
-	public static ArrayList<Firma> getArrangementer() {
+	public static ArrayList<Firma> getFirma() {
 		return new ArrayList<>(firmaer);
 	}
 
-	public static void addPlads(Firma firma) {
+	public static void addFirma(Firma firma) {
 		firmaer.add(firma);
 	}
 
