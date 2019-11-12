@@ -15,7 +15,10 @@ public class Test {
 		LocalDate c = LocalDate.of(2014, Month.JANUARY, 3);
 
 		Udflugt odense = new Udflugt(125, true, l);
+		Udflugt egeskov = new Udflugt(75, true, l);
+		Udflugt trap = new Udflugt(200, true, l);
 		Hotel DHS = new Hotel("", 1050, 1250);
+		Tilvalg wifi = new Tilvalg("", 50);
 
 		Konference konferance = new Konference("Hav og Himmel", l, 1500, 3);
 		Tilmelding tildmelding = new Tilmelding("Hej", "", 0, false, "", a, b,
@@ -26,6 +29,22 @@ public class Test {
 				konferance);
 		hans.addHotel(DHS);
 
+		Tilmelding peter = new Tilmelding("Hej", "", 0, false, "", a, b, "",
+				konferance);
+
+		Tilmelding lone = new Tilmelding("Hej", "", 0, true, "", a, b, "",
+				konferance);
+
+		peter.addHotel(DHS);
+		peter.addTilvalg(wifi);
+		peter.addUdflugter(trap);
+		peter.addUdflugter(egeskov);
+
+		lone.addHotel(DHS);
+		lone.addTilvalg(wifi);
+		lone.addUdflugter(egeskov);
+		lone.addUdflugter(odense);
+
 		System.out.println(tildmelding.beregnPris());
 
 		ulla.addUdflugter(odense);
@@ -33,6 +52,10 @@ public class Test {
 		System.out.println(ulla.beregnPris());
 
 		System.out.println(hans.beregnPris());
+
+		System.out.println(peter.beregnPris());
+
+		System.out.println(lone.beregnPris());
 
 	}
 }

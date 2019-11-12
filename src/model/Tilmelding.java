@@ -140,6 +140,12 @@ public class Tilmelding {
 						* (ChronoUnit.DAYS.between(ankomstDato, afrejseDato)
 								- 1);
 			}
+			for (Tilvalg tilvalg2 : tilvalg) {
+				pris += tilvalg2.getPris()
+						* (ChronoUnit.DAYS.between(ankomstDato, afrejseDato)
+								- 1);
+			}
+
 		}
 		if (ledsager) {
 			for (Udflugt udflugt : udflugter) {
