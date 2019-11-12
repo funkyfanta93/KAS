@@ -3,6 +3,7 @@ package model;
 public class Deltager {
 	private String navn;
 	private String adresse;
+
 	private String by;
 	private int telefonnr;
 
@@ -28,6 +29,22 @@ public class Deltager {
 
 	public int getTelefonnr() {
 		return telefonnr;
+	}
+
+	public void setNavn(String navn) {
+		this.navn = navn;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public void setBy(String by) {
+		this.by = by;
+	}
+
+	public void setTelefonnr(int telefonnr) {
+		this.telefonnr = telefonnr;
 	}
 
 }
