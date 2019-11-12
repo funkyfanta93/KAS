@@ -13,6 +13,7 @@ public class Tilmelding {
 
 	private Hotel hotel;
 	private final ArrayList<Tilvalg> tilvalg = new ArrayList<>();
+	private final ArrayList<Udflugt> udflugter = new ArrayList<>();
 
 	public void addHotel(Hotel hotel) {
 		this.hotel = hotel;
@@ -28,6 +29,18 @@ public class Tilmelding {
 	public void removeTilvalg(Tilvalg tilvalg) {
 		if (this.tilvalg.contains(tilvalg)) {
 			this.tilvalg.remove(tilvalg);
+		}
+	}
+
+	public void addUdflugter(Udflugt Udflugt) {
+		if (!this.udflugter.contains(Udflugt)) {
+			this.udflugter.add(Udflugt);
+		}
+	}
+
+	public void removeUdflugter(Udflugt udflugt) {
+		if (this.udflugter.contains(udflugt)) {
+			this.udflugter.remove(udflugt);
 		}
 	}
 
@@ -85,6 +98,18 @@ public class Tilmelding {
 	public void beregnPris() {
 		int pris = 0;
 		pris += this.konferance.getPris() * this.konferance.getLængde();
+		if (hotel != null) {
+			if (ledsager) {
+				pris += this.hotel.getDobbeltPris();
+			} else {
+				pris += this.hotel.getEnkeltPris();
+			}
+		}
+		if (ledsager) {
+			for (Tilvalg tilvalg2 : tilvalg) {
+				pris += tilvalg2.getPris();
+			}
+		}
 
 	}
 
