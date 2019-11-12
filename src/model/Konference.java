@@ -9,13 +9,13 @@ public class Konference {
 	private int pris;
 	private int længde;
 
-	private ArrayList<Hotel> hoteller = new ArrayList<>();
+	private final ArrayList<Hotel> hoteller = new ArrayList<>();
 
 	public ArrayList<Hotel> getHoteller() {
 		return new ArrayList<>(hoteller);
 	}
 
-	private ArrayList<Udflugt> udflugter = new ArrayList<>();
+	private final ArrayList<Udflugt> udflugter = new ArrayList<>();
 
 	public ArrayList<Udflugt> getUdflugter() {
 		return new ArrayList<>(udflugter);
