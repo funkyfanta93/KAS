@@ -1,11 +1,12 @@
 package model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Konference {
 	private String navn;
-	private LocalDateTime dato;
+	private LocalDate dato;
 	private int pris;
 	private int længde;
 
@@ -21,7 +22,7 @@ public class Konference {
 		return new ArrayList<>(udflugter);
 	}
 
-	public Konference(String navn, LocalDateTime dato, int pris, int længde) {
+	public Konference(String navn, LocalDate dato, int pris, int længde) {
 		this.navn = navn;
 		this.dato = dato;
 		this.pris = pris;
@@ -44,11 +45,11 @@ public class Konference {
 		return navn;
 	}
 
-	public void setDato(LocalDateTime dato) {
+	public void setDato(LocalDate dato) {
 		this.dato = dato;
 	}
 
-	public LocalDateTime getDato() {
+	public LocalDate getDato() {
 		return dato;
 	}
 

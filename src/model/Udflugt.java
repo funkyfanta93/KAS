@@ -1,13 +1,14 @@
 package model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Udflugt {
 	private int pris;
 	private boolean frokost;
-	private LocalDateTime dato;
+	private LocalDate dato;
 
-	public Udflugt(int pris, boolean frokost, LocalDateTime dato) {
+	public Udflugt(int pris, boolean frokost, LocalDate dato) {
 		this.pris = pris;
 		this.frokost = frokost;
 		this.dato = dato;
@@ -29,11 +30,11 @@ public class Udflugt {
 		return frokost;
 	}
 
-	public void setDato(LocalDateTime dato) {
+	public void setDato(LocalDate dato) {
 		this.dato = dato;
 	}
 
-	public LocalDateTime getDato() {
+	public LocalDate getDato() {
 		return dato;
 	}
 }

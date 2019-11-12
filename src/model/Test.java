@@ -8,7 +8,7 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		LocalDateTime l = LocalDateTime.now();
+		LocalDate l = LocalDate.now();
 
 		LocalDate a = LocalDate.of(2014, Month.JANUARY, 1);
 		LocalDate b = LocalDate.of(2014, Month.JANUARY, 4);
