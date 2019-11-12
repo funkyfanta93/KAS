@@ -1,12 +1,22 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Hotel {
 	private String navn;
-	private int pris;
+	private int enkeltPris;
+	private int dobbeltPris;
 
-	public Hotel(String navn, int pris) {
+	private final ArrayList<Tilvalg> tilvalg = new ArrayList<>();
+
+	public ArrayList<Tilvalg> getTilvalg() {
+		return new ArrayList<>(tilvalg);
+	}
+
+	public Hotel(String navn, int enkeltPris, int dobbeltPris) {
 		this.navn = navn;
-		this.pris = pris;
+		this.enkeltPris = enkeltPris;
+		this.dobbeltPris = dobbeltPris;
 	}
 
 	public String getNavn() {
@@ -17,12 +27,20 @@ public class Hotel {
 		this.navn = navn;
 	}
 
-	public int getPris() {
-		return pris;
+	public int getEnkeltPris() {
+		return enkeltPris;
 	}
 
-	public void setPris(int pris) {
-		this.pris = pris;
+	public void setEnkeltPris(int enkeltPris) {
+		this.enkeltPris = enkeltPris;
+	}
+
+	public int getDobbeltPris() {
+		return dobbeltPris;
+	}
+
+	public void setPris(int dobbeltPris) {
+		this.dobbeltPris = dobbeltPris;
 	}
 
 }
