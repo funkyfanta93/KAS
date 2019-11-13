@@ -22,6 +22,12 @@ public class Konference {
 		return new ArrayList<>(udflugter);
 	}
 
+	public ArrayList<Tilmelding> tilmeldinger = new ArrayList<>();
+
+	public ArrayList<Tilmelding> getTilmeldinger() {
+		return new ArrayList<>(tilmeldinger);
+	}
+
 	public Konference(String navn, LocalDate dato, int pris, int længde) {
 		this.navn = navn;
 		this.dato = dato;
@@ -83,6 +89,26 @@ public class Konference {
 		if (udflugter.contains(udflugt)) {
 			udflugter.remove(udflugt);
 		}
+	}
+
+	public void addTilmelding(Tilmelding tildmelding) {
+		if (!tilmeldinger.contains(tildmelding)) {
+			tilmeldinger.add(tildmelding);
+		}
+	}
+
+	public void removeUdflugt(Tilmelding tilmelding) {
+		if (tilmeldinger.contains(tilmelding)) {
+			tilmeldinger.remove(tilmelding);
+		}
+	}
+
+	public int tælTilmeldinger() {
+		int tilmeldinger = 0;
+		for (Tilmelding tilmelding : this.tilmeldinger) {
+			tilmeldinger++;
+		}
+		return tilmeldinger;
 	}
 
 	@Override

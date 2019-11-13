@@ -2,6 +2,7 @@ package gui;
 
 import controller.Controller;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -116,6 +117,11 @@ public class mainApp extends Application {
 
 		vbox2.getChildren().add(Deltagere);
 
+		ChangeListener<Konference> listener = (ov, o, n) -> this
+				.konferanceVælger();
+		lvwKonferancer.getSelectionModel().selectedItemProperty()
+				.addListener(listener);
+
 		// --------------------------bottom
 		// ----------------------------------------
 
@@ -135,6 +141,17 @@ public class mainApp extends Application {
 
 		hbox.getChildren().addAll(buttonHotel, buttonUdflugt);
 
+	}
+
+	private void konferanceVælger() {
+
+		Konference selected = lvwKonferancer.getSelectionModel()
+				.getSelectedItem();
+		if (selected != null) {
+			Deltagere.setText(String.valueOf(selected.tælTilmeldinger()));
+		} else {
+			Deltagere.clear();
+		}
 	}
 
 }

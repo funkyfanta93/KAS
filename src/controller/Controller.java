@@ -19,8 +19,11 @@ public class Controller {
 		LocalDate c = LocalDate.of(2014, Month.JANUARY, 3);
 		LocalDate d = LocalDate.of(2014, Month.JANUARY, 4);
 
-		createKonference("Den 1 Konferance", a, 1500, 3);
-		createKonference("Den 2 Konferance", d, 1000, 2);
+		Konference k1 = createKonference("Den 1 Konferance", a, 1500, 3);
+		Konference k2 = createKonference("Den 2 Konferance", d, 1000, 2);
+
+		Tilmelding t1 = createTilmelding("Jonas", "kk", 32323232, false,
+				"aarhus", a, c, k1);
 
 	}
 
@@ -92,7 +95,7 @@ public class Controller {
 
 	public static Tilmelding createTilmelding(String navn, String adresse,
 			int telefonnr, boolean fordragsholder, String by, LocalDate ankomst,
-			LocalDate afrejse, Firma firma, Konference konference) {
+			LocalDate afrejse, Konference konference) {
 		Tilmelding tilmelding = new Tilmelding(navn, adresse, telefonnr,
 				fordragsholder, by, ankomst, afrejse, konference);
 		Storage.addTilmelding(tilmelding);

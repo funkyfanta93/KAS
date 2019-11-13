@@ -63,6 +63,7 @@ public class Tilmelding {
 		this.ankomstDato = ankomst;
 		this.afrejseDato = afrejse;
 		this.konferance = konference;
+		konferance.addTilmelding(this);
 
 	}
 
@@ -82,6 +83,7 @@ public class Tilmelding {
 		this.ankomstDato = ankomst;
 		this.afrejseDato = afrejse;
 		this.konferance = konference;
+		konference.addTilmelding(this);
 
 	}
 
@@ -102,6 +104,7 @@ public class Tilmelding {
 		this.ankomstDato = ankomst;
 		this.afrejseDato = afrejse;
 		this.konferance = konference;
+		konference.addTilmelding(this);
 
 	}
 
@@ -121,6 +124,7 @@ public class Tilmelding {
 		this.ankomstDato = ankomst;
 		this.afrejseDato = afrejse;
 		this.konferance = konference;
+		konference.addTilmelding(this);
 
 	}
 
