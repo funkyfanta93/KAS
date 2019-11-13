@@ -85,4 +85,9 @@ public class Konference {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return navn;
+	}
+
 }

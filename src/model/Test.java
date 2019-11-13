@@ -18,7 +18,7 @@ public class Test {
 		Udflugt egeskov = new Udflugt(75, true, l);
 		Udflugt trap = new Udflugt(200, true, l);
 		Hotel DHS = new Hotel("", 1050, 1250);
-		Tilvalg wifi = new Tilvalg("", 50);
+		// Tilvalg wifi = new Tilvalg("", 50);
 
 		Konference konferance = new Konference("Hav og Himmel", l, 1500, 3);
 		Tilmelding tildmelding = new Tilmelding("Hej", "", 0, false, "", a, b,
@@ -36,12 +36,12 @@ public class Test {
 				konferance);
 
 		peter.addHotel(DHS);
-		peter.addTilvalg(wifi);
+		// peter.addTilvalg(wifi);
 		peter.addUdflugter(trap);
 		peter.addUdflugter(egeskov);
 
 		lone.addHotel(DHS);
-		lone.addTilvalg(wifi);
+		// lone.addTilvalg(wifi);
 		lone.addUdflugter(egeskov);
 		lone.addUdflugter(odense);
 

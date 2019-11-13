@@ -4,9 +4,10 @@ public class Tilvalg {
 	private String navn;
 	private int pris;
 
-	public Tilvalg(String navn, int pris) {
+	public Tilvalg(String navn, int pris, Hotel hotel) {
 		this.navn = navn;
 		this.pris = pris;
+		hotel.addTilvalg(this);
 	}
 
 	public String getNavn() {
