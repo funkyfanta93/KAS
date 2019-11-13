@@ -10,13 +10,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class HotelWindow extends Stage {
+public class TilvalgWindow extends Stage {
 
-	public HotelWindow(Stage stage, String title) {
+	public TilvalgWindow(Stage stage, String title) {
 		this.initOwner(stage);
 		this.initStyle(StageStyle.UTILITY);
 		this.initModality(Modality.APPLICATION_MODAL);
-		this.setMinHeight(400);
+		this.setMinHeight(200);
 		this.setMinWidth(200);
 
 		this.setTitle(title);
@@ -24,22 +24,18 @@ public class HotelWindow extends Stage {
 		this.initContent(pane);
 		Scene scene = new Scene(pane);
 		stage.setScene(scene);
-
 	}
 
-	// ------------------------------------------------------------------
-
 	private TextField txfNavn;
-	private TextField txfEnkeltPris;
-	private TextField txfDobbeltPris;
+	private TextField txfPris;
 
 	private void initContent(GridPane pane) {
 		pane.setPadding(new Insets(20));
 		pane.setHgap(10);
 		pane.setVgap(10);
 
-		Label lblHotel = new Label("Tilføj Hotel");
-		pane.add(lblHotel, 0, 0);
+		Label lblTilvalg = new Label("Tilføj mulige tilvalg");
+		pane.add(lblTilvalg, 0, 0);
 
 		Label lblNavn = new Label("Navn:");
 		pane.add(lblNavn, 1, 1);
@@ -47,24 +43,16 @@ public class HotelWindow extends Stage {
 		txfNavn = new TextField();
 		pane.add(txfNavn, 2, 1, 2, 1);
 
-		Label lblEnkeltPris = new Label("Pris for enkeltværelse:");
-		pane.add(lblEnkeltPris, 3, 1);
+		Label lblPris = new Label("Pris:");
+		pane.add(lblPris, 3, 1);
 
-		txfEnkeltPris = new TextField();
-		pane.add(txfEnkeltPris, 4, 1, 2, 1);
+		txfPris = new TextField();
+		pane.add(txfPris, 4, 1, 2, 1);
 
-		Label lblDobbeltPris = new Label("Pris for dobbeltværelse:");
-		pane.add(lblDobbeltPris, 5, 1);
+		Button btnTilføjTilvalg = new Button("Tilføj");
+		pane.add(btnTilføjTilvalg, 5, 1);
 
-		txfDobbeltPris = new TextField();
-		pane.add(txfDobbeltPris, 6, 1, 2, 1);
-
-		Button btnTilføjHotel = new Button("Tilføj");
-		pane.add(btnTilføjHotel, 7, 1);
-
-		Button btnFortrydHotel = new Button("Fortryd");
-		pane.add(btnFortrydHotel, 7, 2);
-
+		Button btnFortrydTilvalg = new Button("Fortryd");
+		pane.add(btnFortrydTilvalg, 5, 2);
 	}
-
 }
