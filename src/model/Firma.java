@@ -1,9 +1,9 @@
 package model;
 
 public class Firma {
-	private String navn = "";
-	private int CVR = 0;
-	private int telefonNr = 0;
+	private String navn;
+	private int CVR;
+	private int telefonNr;
 
 	public Firma(String navn, int telefonNr) {
 		this.navn = navn;
