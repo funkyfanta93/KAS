@@ -14,26 +14,21 @@ public class Test {
 		LocalDate b = LocalDate.of(2014, Month.JANUARY, 4);
 		LocalDate c = LocalDate.of(2014, Month.JANUARY, 3);
 
-		Udflugt odense = new Udflugt(125, true, l);
-		Udflugt egeskov = new Udflugt(75, true, l);
-		Udflugt trap = new Udflugt(200, true, l);
+		Udflugt odense = new Udflugt("odense", 125, true, l);
+		Udflugt egeskov = new Udflugt("egeskov", 75, true, l);
+		Udflugt trap = new Udflugt("trap", 200, true, l);
 		Hotel DHS = new Hotel("", 1050, 1250);
 		// Tilvalg wifi = new Tilvalg("", 50);
 
 		Konference konferance = new Konference("Hav og Himmel", l, 1500, 3);
-		Tilmelding tildmelding = new Tilmelding("Hej", "", 0, false, "", a, b,
-				konferance);
-		Tilmelding ulla = new Tilmelding("", "", 0, false, "", a, c, "",
-				konferance);
-		Tilmelding hans = new Tilmelding("", "", 0, false, "", a, b,
-				konferance);
+		Tilmelding tildmelding = new Tilmelding("Hej", "", 0, false, "", a, b, konferance);
+		Tilmelding ulla = new Tilmelding("", "", 0, false, "", a, c, "", konferance);
+		Tilmelding hans = new Tilmelding("", "", 0, false, "", a, b, konferance);
 		hans.addHotel(DHS);
 
-		Tilmelding peter = new Tilmelding("Hej", "", 0, false, "", a, b, "",
-				konferance);
+		Tilmelding peter = new Tilmelding("Hej", "", 0, false, "", a, b, "", konferance);
 
-		Tilmelding lone = new Tilmelding("Hej", "", 0, true, "", a, b, "",
-				konferance);
+		Tilmelding lone = new Tilmelding("Hej", "", 0, true, "", a, b, "", konferance);
 
 		peter.addHotel(DHS);
 		// peter.addTilvalg(wifi);
