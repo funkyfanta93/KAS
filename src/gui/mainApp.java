@@ -34,20 +34,22 @@ public class mainApp extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		stage.setTitle("Arcitecture Demo");
+		stage.setTitle("Gui Demo input window");
 		BorderPane pane = new BorderPane();
 		this.initContent(pane);
 
 		Scene scene = new Scene(pane);
 		stage.setScene(scene);
 		stage.show();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------------------
 
 	private final TextField Deltagere = new TextField();
-
 	private final ListView<Konference> lvwKonferancer = new ListView<>();
+	private KonferenceWindow konferenceWindow;
+	private HotelWindow hotelWindow;
 
 	private void initContent(BorderPane pane) {
 		// pane.setGridLinesVisible(true);
@@ -79,6 +81,13 @@ public class mainApp extends Application {
 		gridpaneCenter.setAlignment(Pos.TOP_CENTER);
 
 		gridpaneCenter.add(konferance, 0, 0);
+
+		Button Bkonference = new Button("Tilføj konference");
+		gridpaneCenter.add(Bkonference, 0, 2, 2, 1);
+		Bkonference.setMaxWidth(Double.MAX_VALUE);
+		GridPane.setMargin(Bkonference, new Insets(10, 0, 0, 0));
+
+		Bkonference.setOnAction(event -> this.addKonference());
 
 		gridpaneCenter.add(lvwKonferancer, 1, 0, 1, 2);
 		lvwKonferancer.setPrefWidth(200);
@@ -136,6 +145,10 @@ public class mainApp extends Application {
 		Button buttonHotel = new Button("Hoteller");
 		buttonHotel.setPrefSize(100, 20);
 
+		buttonHotel.setOnAction(event -> {
+			this.addHotel();
+		});
+
 		Button buttonUdflugt = new Button("Udflugter");
 		buttonUdflugt.setPrefSize(100, 20);
 
@@ -152,6 +165,25 @@ public class mainApp extends Application {
 		} else {
 			Deltagere.clear();
 		}
+	}
+
+	private void addKonference() {
+		konferenceWindow = new KonferenceWindow("Tilføj Konference");
+
+		konferenceWindow.showAndWait();
+
+		lvwKonferancer.getItems().setAll(Storage.getKonference());
+
+	}
+
+	private void addHotel() {
+		hotelWindow = new HotelWindow("test",
+				lvwKonferancer.getSelectionModel().getSelectedItem());
+
+		hotelWindow.showAndWait();
+
+		lvwKonferancer.getItems().setAll(Storage.getKonference());
+
 	}
 
 }

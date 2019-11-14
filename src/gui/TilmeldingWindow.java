@@ -19,24 +19,24 @@ import model.Udflugt;
 
 public class TilmeldingWindow extends Stage {
 
-	public TilmeldingWindow(Stage stage, String title) {
-		this.initOwner(stage);
+	public TilmeldingWindow(String title) {
 		this.initStyle(StageStyle.UTILITY);
 		this.initModality(Modality.APPLICATION_MODAL);
-		this.setMinHeight(400);
-		this.setMinWidth(200);
+		this.setResizable(false);
 
 		this.setTitle(title);
 		GridPane pane = new GridPane();
 		this.initContent(pane);
+
 		Scene scene = new Scene(pane);
-		stage.setScene(scene);
+		this.setScene(scene);
 
 	}
 
 	// -------------------------------------------------------------------------
 
-	private TextField txfNavn, txfAdresse, txfBy, txfAnkomst, txfTelefon, txfAfrejse, txfFirma, txfHotel;
+	private TextField txfNavn, txfAdresse, txfBy, txfAnkomst, txfTelefon,
+			txfAfrejse, txfFirma, txfHotel;
 
 	private ListView<Hotel> lvwHoteller = new ListView<>();
 	private ListView<Tilvalg> lvwTilvalg = new ListView<>();
@@ -57,13 +57,13 @@ public class TilmeldingWindow extends Stage {
 		pane.setVgap(10);
 
 		// add a label to the pane (at col=0, row=0)
-//				Label lblName = new Label("Name:");
-//				pane.add(lblName, 0, 0);
+		// Label lblName = new Label("Name:");
+		// pane.add(lblName, 0, 0);
 		//
-//				// add a label to the pane (at col=0, row=1)
-//				Label lblNames = new Label("Names:");
-//				pane.add(lblNames, 0, 1);
-//				GridPane.setValignment(lblNames, VPos.TOP);
+		// // add a label to the pane (at col=0, row=1)
+		// Label lblNames = new Label("Names:");
+		// pane.add(lblNames, 0, 1);
+		// GridPane.setValignment(lblNames, VPos.TOP);
 
 		// add a text field to the pane (at col=1, row=0)
 		txfNavn = new TextField();

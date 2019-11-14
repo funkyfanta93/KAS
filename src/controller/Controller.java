@@ -19,11 +19,20 @@ public class Controller {
 		LocalDate c = LocalDate.of(2014, Month.JANUARY, 3);
 		LocalDate d = LocalDate.of(2014, Month.JANUARY, 4);
 
+		Hotel h1 = createHotel("Hej", 200, 400);
+
 		Konference k1 = createKonference("Den 1 Konferance", a, 1500, 3);
 		Konference k2 = createKonference("Den 2 Konferance", d, 1000, 2);
 
 		Tilmelding t1 = createTilmelding("Jonas", "kk", 32323232, false,
 				"aarhus", a, c, k1);
+
+		tilføjHotel(k1, h1);
+
+	}
+
+	public static void tilføjHotel(Konference konferance, Hotel hotel) {
+		konferance.addHotel(hotel);
 
 	}
 

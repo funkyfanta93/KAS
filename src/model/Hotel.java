@@ -55,4 +55,9 @@ public class Hotel {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return navn;
+	}
+
 }
