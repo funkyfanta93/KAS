@@ -14,18 +14,17 @@ import javafx.stage.StageStyle;
 
 public class UdflugtWindow extends Stage {
 
-	public UdflugtWindow(Stage stage, String title) {
-		this.initOwner(stage);
+	public UdflugtWindow(String title) {
 		this.initStyle(StageStyle.UTILITY);
 		this.initModality(Modality.APPLICATION_MODAL);
-		this.setMinHeight(300);
-		this.setMinWidth(200);
+		this.setResizable(false);
 
 		this.setTitle(title);
 		GridPane pane = new GridPane();
 		this.initContent(pane);
+
 		Scene scene = new Scene(pane);
-		stage.setScene(scene);
+		this.setScene(scene);
 	}
 
 	private TextField txfNavn;

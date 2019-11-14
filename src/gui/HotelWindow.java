@@ -4,7 +4,6 @@ import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -91,7 +90,28 @@ public class HotelWindow extends Stage {
 		Button btnFortrydHotel = new Button("Luk");
 		vbox.getChildren().add(btnFortrydHotel);
 
+		Button btnTilvalg = new Button("Tilvalg");
+		vbox.getChildren().add(btnTilvalg);
+		btnTilvalg.setOnAction(event -> tilvalgAction());
+
 		pane.add(vbox, 0, 11);
+
+	}
+
+	TilvalgWindow tilvalgWindow;
+
+	private void tilvalgAction() {
+
+		Hotel hotel = lvwHotel.getSelectionModel().getSelectedItem();
+
+		if (hotel == null) {
+			return;
+
+		}
+
+		tilvalgWindow = new TilvalgWindow(hotel, "Tilføj Tilvalg");
+
+		tilvalgWindow.showAndWait();
 
 	}
 

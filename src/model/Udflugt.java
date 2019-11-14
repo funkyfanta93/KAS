@@ -7,15 +7,25 @@ public class Udflugt {
 	private int pris;
 	private boolean frokost;
 	private LocalDate dato;
+	private String navn;
 
-	public Udflugt(int pris, boolean frokost, LocalDate dato) {
+	public Udflugt(String navn, int pris, boolean frokost, LocalDate dato) {
 		this.pris = pris;
 		this.frokost = frokost;
 		this.dato = dato;
+		this.navn = navn;
 	}
 
 	public void setPris(int pris) {
 		this.pris = pris;
+	}
+
+	public String getNavn() {
+		return navn;
+	}
+
+	public void setNavn(String navn) {
+		this.navn = navn;
 	}
 
 	public int getPris() {

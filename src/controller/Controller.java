@@ -29,11 +29,21 @@ public class Controller {
 
 		tilføjHotel(k1, h1);
 
+		createTilvalg("wifi", 2, h1);
+
+		Udflugt udflugt = createUdflugt("jonas", 20, true, a);
+
+		tilføjUdflugt(k1, udflugt);
+
 	}
 
 	public static void tilføjHotel(Konference konferance, Hotel hotel) {
 		konferance.addHotel(hotel);
 
+	}
+
+	public static void tilføjUdflugt(Konference konference, Udflugt udflugt) {
+		konference.addUdflugt(udflugt);
 	}
 
 	public static Konference createKonference(String navn, LocalDate dato,
@@ -111,9 +121,9 @@ public class Controller {
 		return tilmelding;
 	}
 
-	public static Udflugt createUdflugt(int pris, boolean frokost,
+	public static Udflugt createUdflugt(String navn, int pris, boolean frokost,
 			LocalDate dato) {
-		Udflugt udflugt = new Udflugt(pris, frokost, dato);
+		Udflugt udflugt = new Udflugt(navn, pris, frokost, dato);
 		Storage.addUdflugt(udflugt);
 		return udflugt;
 	}

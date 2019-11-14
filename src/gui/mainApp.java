@@ -176,13 +176,19 @@ public class mainApp extends Application {
 
 	}
 
+	UdflugtWindow udflugtwindow;
+
 	private void addHotel() {
-		hotelWindow = new HotelWindow("test",
-				lvwKonferancer.getSelectionModel().getSelectedItem());
 
-		hotelWindow.showAndWait();
+		udflugtwindow = new UdflugtWindow("hej");
+		udflugtwindow.showAndWait();
 
-		lvwKonferancer.getItems().setAll(Storage.getKonference());
+		// hotelWindow = new HotelWindow("test",
+		// lvwKonferancer.getSelectionModel().getSelectedItem());
+
+		// hotelWindow.showAndWait();
+
+		// lvwKonferancer.getItems().setAll(Storage.getKonference());
 
 	}
 
