@@ -6,6 +6,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -89,7 +91,7 @@ public class mainApp extends Application {
 
 		Bkonference.setOnAction(event -> this.addKonference());
 
-		gridpaneCenter.add(lvwKonferancer, 1, 0, 1, 2);
+		gridpaneCenter.add(lvwKonferancer, 0, 1, 1, 2);
 		lvwKonferancer.setPrefWidth(200);
 		lvwKonferancer.setPrefHeight(200);
 		lvwKonferancer.getItems().setAll(Storage.getKonference());
@@ -126,10 +128,8 @@ public class mainApp extends Application {
 
 		vbox2.getChildren().add(Deltagere);
 
-		ChangeListener<Konference> listener = (ov, o, n) -> this
-				.konferanceVælger();
-		lvwKonferancer.getSelectionModel().selectedItemProperty()
-				.addListener(listener);
+		ChangeListener<Konference> listener = (ov, o, n) -> this.konferanceVælger();
+		lvwKonferancer.getSelectionModel().selectedItemProperty().addListener(listener);
 
 		// --------------------------bottom
 		// ----------------------------------------
@@ -152,14 +152,17 @@ public class mainApp extends Application {
 		Button buttonUdflugt = new Button("Udflugter");
 		buttonUdflugt.setPrefSize(100, 20);
 
+		buttonUdflugt.setOnAction(event -> {
+			this.addUdflugt();
+		});
+
 		hbox.getChildren().addAll(buttonHotel, buttonUdflugt);
 
 	}
 
 	private void konferanceVælger() {
 
-		Konference selected = lvwKonferancer.getSelectionModel()
-				.getSelectedItem();
+		Konference selected = lvwKonferancer.getSelectionModel().getSelectedItem();
 		if (selected != null) {
 			Deltagere.setText(String.valueOf(selected.tælTilmeldinger()));
 		} else {
@@ -180,16 +183,17 @@ public class mainApp extends Application {
 
 	private void addHotel() {
 
+		hotelWindow = new HotelWindow("test", lvwKonferancer.getSelectionModel().getSelectedItem());
+
+		hotelWindow.showAndWait();
+
+		lvwKonferancer.getItems().setAll(Storage.getKonference());
+
+	}
+
+	private void addUdflugt() {
 		udflugtwindow = new UdflugtWindow("hej");
 		udflugtwindow.showAndWait();
-
-		// hotelWindow = new HotelWindow("test",
-		// lvwKonferancer.getSelectionModel().getSelectedItem());
-
-		// hotelWindow.showAndWait();
-
-		// lvwKonferancer.getItems().setAll(Storage.getKonference());
-
 	}
 
 }

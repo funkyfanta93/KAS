@@ -86,6 +86,7 @@ public class UdflugtWindow extends Stage {
 
 		Button btnFortrydUdflugt = new Button("Luk");
 		vbox.getChildren().add(btnFortrydUdflugt);
+		btnFortrydUdflugt.setOnAction(event -> close());
 
 		pane.add(vbox, 0, 11);
 
