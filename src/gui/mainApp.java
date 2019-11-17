@@ -50,6 +50,7 @@ public class mainApp extends Application {
 	private final ListView<Konference> lvwKonferancer = new ListView<>();
 	private KonferenceWindow konferenceWindow;
 	private HotelWindow hotelWindow;
+	private UdflugtWindow udflugtwindow;
 
 	private void initContent(BorderPane pane) {
 		// pane.setGridLinesVisible(true);
@@ -152,6 +153,8 @@ public class mainApp extends Application {
 		Button buttonUdflugt = new Button("Udflugter");
 		buttonUdflugt.setPrefSize(100, 20);
 
+		buttonUdflugt.setOnAction(event -> addUdflugt());
+
 		hbox.getChildren().addAll(buttonHotel, buttonUdflugt);
 
 	}
@@ -176,20 +179,22 @@ public class mainApp extends Application {
 
 	}
 
-	UdflugtWindow udflugtwindow;
-
 	private void addHotel() {
 
-		udflugtwindow = new UdflugtWindow("hej");
+		hotelWindow = new HotelWindow("test",
+				lvwKonferancer.getSelectionModel().getSelectedItem());
+
+		hotelWindow.showAndWait();
+
+		lvwKonferancer.getItems().setAll(Storage.getKonference());
+
+	}
+
+	public void addUdflugt() {
+		udflugtwindow = new UdflugtWindow("hej",
+				lvwKonferancer.getSelectionModel().getSelectedItem());
 		udflugtwindow.showAndWait();
-
-		// hotelWindow = new HotelWindow("test",
-		// lvwKonferancer.getSelectionModel().getSelectedItem());
-
-		// hotelWindow.showAndWait();
-
-		// lvwKonferancer.getItems().setAll(Storage.getKonference());
-
+		lvwKonferancer.getItems().setAll(Storage.getKonference());
 	}
 
 }

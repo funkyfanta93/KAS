@@ -11,14 +11,17 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Konference;
 
 public class UdflugtWindow extends Stage {
 
-	public UdflugtWindow(String title) {
+	Konference konference;
+
+	public UdflugtWindow(String title, Konference konference) {
 		this.initStyle(StageStyle.UTILITY);
 		this.initModality(Modality.APPLICATION_MODAL);
 		this.setResizable(false);
-
+		this.konference = konference;
 		this.setTitle(title);
 		GridPane pane = new GridPane();
 		this.initContent(pane);
