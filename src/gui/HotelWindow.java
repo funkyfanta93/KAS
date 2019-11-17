@@ -58,10 +58,10 @@ public class HotelWindow extends Stage {
 		Label lblH = new Label("Hoteller");
 		pane.add(lblH, 0, 0);
 
-		Label lbltH = new Label("TILFØJT HOTEL :");
+		Label lbltH = new Label("TILFØJ HOTEL: ");
 		pane.add(lbltH, 0, 3);
 
-		Label lblNavn = new Label("navn: ");
+		Label lblNavn = new Label("Navn: ");
 		pane.add(lblNavn, 0, 4);
 
 		txfNavn = new TextField();
@@ -119,7 +119,7 @@ public class HotelWindow extends Stage {
 
 		String name = txfNavn.getText().trim();
 		if (name.length() == 0) {
-			lblError.setText("Navn er tom");
+			lblError.setText("Navn er tomt");
 			return;
 		}
 
@@ -148,8 +148,7 @@ public class HotelWindow extends Stage {
 
 		// Call controller methods
 		Hotel hotel;
-		hotel = Controller.createHotel(txfNavn.getText().trim(),
-				Integer.parseInt(txfPris.getText().trim()),
+		hotel = Controller.createHotel(txfNavn.getText().trim(), Integer.parseInt(txfPris.getText().trim()),
 				Integer.parseInt(txfDpris.getText().trim()));
 		Controller.tilføjHotel(konference, hotel);
 		lblError.setText("");
