@@ -80,9 +80,11 @@ public class Controller {
 
 	public static Tilmelding createTildmelding(String navn, String adresse,
 			int telefonnr, boolean fordragsholder, String by, LocalDate ankomst,
-			LocalDate afrejse, Firma firma, Konference konference) {
+			LocalDate afrejse, String firmanavn, int firmatelefon,
+			Konference konference) {
 		Tilmelding tilmelding = new Tilmelding(navn, adresse, telefonnr,
-				fordragsholder, by, ankomst, afrejse, konference);
+				fordragsholder, by, ankomst, afrejse, firmanavn, firmatelefon,
+				konference);
 		Storage.addTilmelding(tilmelding);
 		return tilmelding;
 	}

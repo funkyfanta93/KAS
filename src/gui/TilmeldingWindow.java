@@ -7,6 +7,7 @@ import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -53,6 +54,8 @@ public class TilmeldingWindow extends Stage {
 
 	private Konference konferance;
 
+	private Label error;
+
 	private CheckBox cbLedsager, cbForedragsholder;
 
 	private ListView<Hotel> lvwHoteller = new ListView<>();
@@ -76,30 +79,6 @@ public class TilmeldingWindow extends Stage {
 		// set vertical gap between components
 		pane.setVgap(10);
 
-<<<<<<< HEAD
-||||||| 64229ef
-		// add a label to the pane (at col=0, row=0)
-//				Label lblName = new Label("Name:");
-//				pane.add(lblName, 0, 0);
-		//
-//				// add a label to the pane (at col=0, row=1)
-//				Label lblNames = new Label("Names:");
-//				pane.add(lblNames, 0, 1);
-//				GridPane.setValignment(lblNames, VPos.TOP);
-
-		// add a text field to the pane (at col=1, row=0)
-=======
-		// add a label to the pane (at col=0, row=0)
-		// Label lblName = new Label("Name:");
-		// pane.add(lblName, 0, 0);
-		//
-		// // add a label to the pane (at col=0, row=1)
-		// Label lblNames = new Label("Names:");
-		// pane.add(lblNames, 0, 1);
-		// GridPane.setValignment(lblNames, VPos.TOP);
-
-		// add a text field to the pane (at col=1, row=0)
->>>>>>> 4dce4a4ede5440816a66bc1bf53b5733843026df
 		txfNavn = new TextField();
 		pane.add(txfNavn, 1, 2);
 
@@ -128,7 +107,7 @@ public class TilmeldingWindow extends Stage {
 		pane.add(txfHotel, 1, 13);
 
 		Label lblDeltagerinfo = new Label("Deltagerinformation");
-		pane.add(lblDeltagerinfo, 0, 0);
+		pane.add(lblDeltagerinfo, 0, 0, 2, 1);
 
 		Label lblTelefon = new Label("Tlf.nr:");
 		pane.add(lblTelefon, 2, 2);
@@ -220,6 +199,9 @@ public class TilmeldingWindow extends Stage {
 
 		Label lblSamledePris = new Label("Ledsager");
 		pane.add(lblSamledePris, 0, 19);
+
+		error = new Label("");
+		pane.add(error, 1, 18);
 
 		txfDeltagerPris = new TextField();
 		pane.add(txfDeltagerPris, 1, 19);
@@ -327,19 +309,111 @@ public class TilmeldingWindow extends Stage {
 
 		String navn = txfNavn.getText().trim();
 		String adresse = txfAdresse.getText().trim();
-		int telefonnr = Integer.valueOf(txfTelefon.getText().trim());
+		Tilmelding tilmelding;
+
+		int test = -1;
+
+		try {
+			test = Integer.parseInt(txfTelefon.getText().trim());
+		} catch (NumberFormatException ex)
+
+		{
+			// do nothing '
+
+		}
+		if (test < 0) {
+			error.setText("telefon nr er tom");
+			return;
+		}
+
+		int telefonnr = Integer.parseInt(txfTelefon.getText().trim());
+
 		boolean fordragsholder = cbForedragsholder.isSelected();
+
 		String by = txfBy.getText().trim();
+
+		if (by.contentEquals("")) {
+			error.setText("by tom");
+			return;
+		}
+
 		LocalDate ankomst = Ankomst.getValue();
+
+		if (ankomst == null) {
+			error.setText("vælg en ankomstdato");
+			return;
+		}
+
 		LocalDate afrejse = Afrejse.getValue();
+
+		if (afrejse == null) {
+			error.setText("vælg en afrejsedato ankomstdato");
+			return;
+		}
 		String firmanavn = txfFirma.getText().trim();
+
+		test = -1;
+
+		if (!((txfFirmaCVR.getText().trim()).contentEquals(""))) {
+			try {
+				test = Integer.parseInt(txfFirmaCVR.getText().trim());
+			} catch (NumberFormatException ex)
+
+			{
+				// do nothing '
+
+			}
+			if (test < 0) {
+				error.setText("FirmaTLF er tom eller tekst");
+				return;
+			}
+		}
+
 		int firmatlf = Integer.valueOf(txfFirmaCVR.getText().trim());
 		String ledsagerNavn = txfLedsagerNavn.getText().trim();
+
+		if (ledsagerNavn == "" && cbLedsager.isSelected()) {
+			error.setText("indtast ledsagernavn");
+			return;
+		}
+
 		Konference konference = this.konferance;
 
-		Tilmelding tilmelding = Controller.createTildmelding(navn, adresse,
-				telefonnr, fordragsholder, by, ankomst, afrejse, firmanavn,
-				firmatlf, ledsagerNavn, konference);
+		if (navn.contentEquals("")) {
+			error.setText("navn tom");
+			return;
+		}
+
+		if (adresse.contentEquals("")) {
+			error.setText("adresse tom");
+			return;
+		}
+
+		if (firmanavn.contentEquals("")) {
+			if (cbLedsager.isSelected()) {
+				tilmelding = Controller.createTilmelding(firmanavn, adresse,
+						telefonnr, fordragsholder, by, ankomst, afrejse,
+						ledsagerNavn, konference);
+			} else {
+				tilmelding = Controller.createTilmelding(ledsagerNavn, adresse,
+						telefonnr, fordragsholder, by, ankomst, afrejse,
+						konference);
+			}
+
+		} else {
+			if (cbLedsager.isSelected()) {
+				tilmelding = Controller.createTildmelding(navn, adresse,
+						telefonnr, fordragsholder, by, ankomst, afrejse,
+						firmanavn, firmatlf, ledsagerNavn, konference);
+			} else {
+				tilmelding = Controller.createTildmelding(ledsagerNavn, adresse,
+						telefonnr, fordragsholder, by, ankomst, afrejse,
+						firmanavn, firmatlf, konference);
+
+			}
+
+		}
+
 		for (Udflugt udflugt : udflugter) {
 			tilmelding.addUdflugter(udflugt);
 		}
@@ -348,9 +422,8 @@ public class TilmeldingWindow extends Stage {
 		}
 
 		txfDeltagerPris.setText(String.valueOf(tilmelding.beregnPris()));
-		btnTilmeldDeltager.setDisable(true);
 
-		System.out.println(tilmelding.getHotel());
+		btnTilmeldDeltager.setDisable(true);
 
 	}
 }
