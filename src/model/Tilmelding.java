@@ -54,15 +54,16 @@ public class Tilmelding {
 
 	public Tilmelding(String navn, String adresse, int telefonnr,
 			boolean fordragsholder, String by, LocalDate ankomst,
-			LocalDate afrejse, Firma firma, String ledsagerNavn,
-			Konference konference) {
+			LocalDate afrejse, String firmanavn, int firmatlf,
+			String ledsagerNavn, Konference konference) {
 		this.deltager = new Deltager(navn, adresse, by, telefonnr,
-				fordragsholder, firma);
+				fordragsholder, firmanavn, firmatlf);
 		this.ledsager = true;
 		this.ledsagerNavn = ledsagerNavn;
 		this.ankomstDato = ankomst;
 		this.afrejseDato = afrejse;
 		this.konferance = konference;
+
 		konferance.addTilmelding(this);
 
 	}
@@ -74,17 +75,38 @@ public class Tilmelding {
 	 * 
 	 */
 
+	/**
+	 * @param navn
+	 * @param adresse
+	 * @param telefonnr
+	 * @param fordragsholder
+	 * @param by
+	 * @param ankomst
+	 * @param afrejse
+	 * @param firmanavn
+	 * @param firmatlf
+	 * @param konference
+	 */
 	public Tilmelding(String navn, String adresse, int telefonnr,
 			boolean fordragsholder, String by, LocalDate ankomst,
-			LocalDate afrejse, Firma firma, Konference konference) {
+			LocalDate afrejse, String firmanavn, int firmatlf,
+			Konference konference) {
 		this.deltager = new Deltager(navn, adresse, by, telefonnr,
-				fordragsholder, firma);
+				fordragsholder, firmanavn, firmatlf);
 		this.ledsager = false;
 		this.ankomstDato = ankomst;
 		this.afrejseDato = afrejse;
 		this.konferance = konference;
 		konference.addTilmelding(this);
 
+	}
+
+	public Deltager getDeltager() {
+		return deltager;
+	}
+
+	public void setDeltager(Deltager deltager) {
+		this.deltager = deltager;
 	}
 
 	/**
@@ -167,6 +189,14 @@ public class Tilmelding {
 
 	public void setLedsagerNavn(String ledsagerNavn) {
 		this.ledsagerNavn = ledsagerNavn;
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
 	}
 
 	public boolean isLedsager() {

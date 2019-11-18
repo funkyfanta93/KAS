@@ -9,11 +9,13 @@ public class Udflugt {
 	private LocalDate dato;
 	private String navn;
 
-	public Udflugt(String navn, int pris, boolean frokost, LocalDate dato) {
+	public Udflugt(String navn, int pris, boolean frokost, LocalDate dato,
+			Konference konferance) {
 		this.pris = pris;
 		this.frokost = frokost;
 		this.dato = dato;
 		this.navn = navn;
+		konferance.addUdflugt(this);
 	}
 
 	public void setPris(int pris) {
@@ -46,5 +48,9 @@ public class Udflugt {
 
 	public LocalDate getDato() {
 		return dato;
+	}
+	@Override
+	public String toString() {
+		return navn;
 	}
 }

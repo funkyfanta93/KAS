@@ -1,5 +1,6 @@
 package gui;
 
+import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -36,6 +37,7 @@ public class TilvalgWindow extends Stage {
 
 	private TextField txfNavn;
 	private TextField txfPris;
+	private Label lblError;
 
 	private final ListView<Tilvalg> lvwTilvalg = new ListView<>();
 
@@ -61,14 +63,11 @@ public class TilvalgWindow extends Stage {
 		txfNavn = new TextField();
 		pane.add(txfNavn, 0, 5);
 
-		Label lblEPris = new Label("Enkeltværelse Pris:");
+		Label lblEPris = new Label("Pris:");
 		pane.add(lblEPris, 0, 6);
 
 		txfPris = new TextField();
 		pane.add(txfPris, 0, 7);
-
-		Label lblDpris = new Label("Dobbeltværelse Pris:");
-		pane.add(lblDpris, 0, 8);
 
 		// txfDpris = new TextField();
 		// pane.add(txfDpris, 0, 9);
@@ -79,14 +78,38 @@ public class TilvalgWindow extends Stage {
 
 		Button btnTilføjHotel = new Button("Tilføj");
 		vbox.getChildren().add(btnTilføjHotel);
+		btnTilføjHotel.setOnAction(event -> okAction());
 		// btnTilføjHotel.setOnAction(event -> okAction());
 
 		Button btnFortrydHotel = new Button("Luk");
 		vbox.getChildren().add(btnFortrydHotel);
 
-		Button btnTilvalg = new Button("Tilvalg");
-		vbox.getChildren().add(btnTilvalg);
-
 		pane.add(vbox, 0, 11);
+	}
+
+	private void okAction() {
+
+		String name = txfNavn.getText().trim();
+		if (name.length() == 0) {
+			lblError.setText("Navn er tomt");
+			return;
+		}
+
+		int test = -1;
+
+		try {
+			test = Integer.parseInt(txfPris.getText().trim());
+		} catch (NumberFormatException ex) { // do nothing '
+		}
+		if (test < 0) {
+			lblError.setText("Enkeltværelse pris er tom/forkert");
+			return;
+		}
+
+		// Call controller methods
+
+		Controller.createTilvalg(txfNavn.getText().trim(),
+				Integer.valueOf(txfPris.getText().trim()), hotel);
+		lvwTilvalg.getItems().setAll(hotel.getTilvalg());
 	}
 }

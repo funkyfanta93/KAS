@@ -31,9 +31,7 @@ public class Controller {
 
 		createTilvalg("wifi", 2, h1);
 
-		Udflugt udflugt = createUdflugt("jonas", 20, true, a);
-
-		tilføjUdflugt(k1, udflugt);
+		Udflugt udflugt = createUdflugt("jonas", 20, true, a, k1);
 
 	}
 
@@ -63,11 +61,11 @@ public class Controller {
 
 	public static Tilmelding createTildmelding(String navn, String adresse,
 			int telefonnr, boolean fordragsholder, String by, LocalDate ankomst,
-			LocalDate afrejse, Firma firma, String ledsagerNavn,
-			Konference konference) {
+			LocalDate afrejse, String firmanavn, int firmatlf,
+			String ledsagerNavn, Konference konference) {
 		Tilmelding tilmelding = new Tilmelding(navn, adresse, telefonnr,
-				fordragsholder, by, ankomst, afrejse, firma, ledsagerNavn,
-				konference);
+				fordragsholder, by, ankomst, afrejse, firmanavn, firmatlf,
+				ledsagerNavn, konference);
 		Storage.addTilmelding(tilmelding);
 		return tilmelding;
 
@@ -122,8 +120,8 @@ public class Controller {
 	}
 
 	public static Udflugt createUdflugt(String navn, int pris, boolean frokost,
-			LocalDate dato) {
-		Udflugt udflugt = new Udflugt(navn, pris, frokost, dato);
+			LocalDate dato, Konference konference) {
+		Udflugt udflugt = new Udflugt(navn, pris, frokost, dato, konference);
 		Storage.addUdflugt(udflugt);
 		return udflugt;
 	}

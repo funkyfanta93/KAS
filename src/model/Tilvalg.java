@@ -26,4 +26,9 @@ public class Tilvalg {
 		this.pris = pris;
 	}
 
+	@Override
+	public String toString() {
+		return navn;
+	}
+
 }

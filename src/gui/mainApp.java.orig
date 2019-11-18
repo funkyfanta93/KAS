@@ -53,7 +53,6 @@ public class mainApp extends Application {
 	private KonferenceWindow konferenceWindow;
 	private HotelWindow hotelWindow;
 	private UdflugtWindow udflugtwindow;
-	private TilmeldingWindow tildmeldingWindow;
 
 	private void initContent(BorderPane pane) {
 		// pane.setGridLinesVisible(true);
@@ -113,10 +112,8 @@ public class mainApp extends Application {
 		title.setFont(Font.font("Arial", FontWeight.BOLD, 14));
 		vbox.getChildren().add(title);
 
-		Button tilmeld = new Button("Tildmeld");
-		vbox.getChildren().add(tilmeld);
-
-		tilmeld.setOnAction(event -> addTildmelding());
+		Button biler = new Button("Tildmeld");
+		vbox.getChildren().add(biler);
 
 		// ---------------------------- Right ----------------------------------
 
@@ -132,10 +129,8 @@ public class mainApp extends Application {
 
 		vbox2.getChildren().add(Deltagere);
 
-		ChangeListener<Konference> listener = (ov, o, n) -> this
-				.konferanceVælger();
-		lvwKonferancer.getSelectionModel().selectedItemProperty()
-				.addListener(listener);
+		ChangeListener<Konference> listener = (ov, o, n) -> this.konferanceVælger();
+		lvwKonferancer.getSelectionModel().selectedItemProperty().addListener(listener);
 
 		// --------------------------bottom
 		// ----------------------------------------
@@ -158,9 +153,13 @@ public class mainApp extends Application {
 		Button buttonUdflugt = new Button("Udflugter");
 		buttonUdflugt.setPrefSize(100, 20);
 
+<<<<<<< HEAD
+		buttonUdflugt.setOnAction(event -> addUdflugt());
+=======
 		buttonUdflugt.setOnAction(event -> {
 			this.addUdflugt();
 		});
+>>>>>>> 622fdc4377301ce7c4cb45c0d10477af7fa92ab3
 
 		hbox.getChildren().addAll(buttonHotel, buttonUdflugt);
 
@@ -168,8 +167,7 @@ public class mainApp extends Application {
 
 	private void konferanceVælger() {
 
-		Konference selected = lvwKonferancer.getSelectionModel()
-				.getSelectedItem();
+		Konference selected = lvwKonferancer.getSelectionModel().getSelectedItem();
 		if (selected != null) {
 			Deltagere.setText(String.valueOf(selected.tælTilmeldinger()));
 		} else {
@@ -188,8 +186,12 @@ public class mainApp extends Application {
 
 	private void addHotel() {
 
-		hotelWindow = new HotelWindow("Hotel",
+<<<<<<< HEAD
+		hotelWindow = new HotelWindow("test",
 				lvwKonferancer.getSelectionModel().getSelectedItem());
+=======
+		hotelWindow = new HotelWindow("test", lvwKonferancer.getSelectionModel().getSelectedItem());
+>>>>>>> 622fdc4377301ce7c4cb45c0d10477af7fa92ab3
 
 		hotelWindow.showAndWait();
 
@@ -197,20 +199,17 @@ public class mainApp extends Application {
 
 	}
 
+<<<<<<< HEAD
 	public void addUdflugt() {
-		udflugtwindow = new UdflugtWindow("Udflugt",
+		udflugtwindow = new UdflugtWindow("hej",
 				lvwKonferancer.getSelectionModel().getSelectedItem());
 		udflugtwindow.showAndWait();
 		lvwKonferancer.getItems().setAll(Storage.getKonference());
-
-	}
-
-	public void addTildmelding() {
-		tildmeldingWindow = new TilmeldingWindow("Tilmelding",
-				lvwKonferancer.getSelectionModel().getSelectedItem());
-		tildmeldingWindow.showAndWait();
-		lvwKonferancer.getItems().setAll(Storage.getKonference());
-
+=======
+	private void addUdflugt() {
+		udflugtwindow = new UdflugtWindow("hej");
+		udflugtwindow.showAndWait();
+>>>>>>> 622fdc4377301ce7c4cb45c0d10477af7fa92ab3
 	}
 
 }
