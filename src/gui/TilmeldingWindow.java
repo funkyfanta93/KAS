@@ -56,16 +56,6 @@ public class TilmeldingWindow extends Stage {
 		// set vertical gap between components
 		pane.setVgap(10);
 
-		// add a label to the pane (at col=0, row=0)
-//				Label lblName = new Label("Name:");
-//				pane.add(lblName, 0, 0);
-		//
-//				// add a label to the pane (at col=0, row=1)
-//				Label lblNames = new Label("Names:");
-//				pane.add(lblNames, 0, 1);
-//				GridPane.setValignment(lblNames, VPos.TOP);
-
-		// add a text field to the pane (at col=1, row=0)
 		txfNavn = new TextField();
 		pane.add(txfNavn, 1, 2);
 
