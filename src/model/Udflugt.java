@@ -7,15 +7,27 @@ public class Udflugt {
 	private int pris;
 	private boolean frokost;
 	private LocalDate dato;
+	private String navn;
 
-	public Udflugt(int pris, boolean frokost, LocalDate dato) {
+	public Udflugt(String navn, int pris, boolean frokost, LocalDate dato,
+			Konference konferance) {
 		this.pris = pris;
 		this.frokost = frokost;
 		this.dato = dato;
+		this.navn = navn;
+		konferance.addUdflugt(this);
 	}
 
 	public void setPris(int pris) {
 		this.pris = pris;
+	}
+
+	public String getNavn() {
+		return navn;
+	}
+
+	public void setNavn(String navn) {
+		this.navn = navn;
 	}
 
 	public int getPris() {
@@ -36,5 +48,9 @@ public class Udflugt {
 
 	public LocalDate getDato() {
 		return dato;
+	}
+	@Override
+	public String toString() {
+		return navn;
 	}
 }

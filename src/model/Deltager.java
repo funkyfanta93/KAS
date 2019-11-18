@@ -7,6 +7,8 @@ public class Deltager {
 	private String adresse;
 	private Firma firma;
 	private boolean fordragsholder;
+	private String Firmanavn;
+	private int firmaCVR;
 
 	private String by;
 	private int telefonnr;
@@ -22,13 +24,14 @@ public class Deltager {
 	}
 
 	public Deltager(String navn, String adresse, String by, int telefonnr,
-			boolean fordragsholder, Firma firma) {
+			boolean fordragsholder, String firmaNavn, int firmaCVR) {
 		this.navn = navn;
 		this.adresse = adresse;
 		this.by = by;
 		this.telefonnr = telefonnr;
 		this.fordragsholder = fordragsholder;
-		this.firma = firma;
+		this.Firmanavn = firmaNavn;
+		this.firmaCVR = firmaCVR;
 
 	}
 
@@ -62,13 +65,6 @@ public class Deltager {
 
 	public void setTelefonnr(int telefonnr) {
 		this.telefonnr = telefonnr;
-	}
-	public Firma getFirma() {
-		return firma;
-	}
-
-	public void setFirma(Firma firma) {
-		this.firma = firma;
 	}
 
 	public boolean isFordragsholder() {

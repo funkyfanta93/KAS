@@ -19,12 +19,29 @@ public class Controller {
 		LocalDate c = LocalDate.of(2014, Month.JANUARY, 3);
 		LocalDate d = LocalDate.of(2014, Month.JANUARY, 4);
 
+		Hotel h1 = createHotel("Hej", 200, 400);
+
 		Konference k1 = createKonference("Den 1 Konferance", a, 1500, 3);
 		Konference k2 = createKonference("Den 2 Konferance", d, 1000, 2);
 
 		Tilmelding t1 = createTilmelding("Jonas", "kk", 32323232, false,
 				"aarhus", a, c, k1);
 
+		tilføjHotel(k1, h1);
+
+		createTilvalg("wifi", 2, h1);
+
+		Udflugt udflugt = createUdflugt("jonas", 20, true, a, k1);
+
+	}
+
+	public static void tilføjHotel(Konference konferance, Hotel hotel) {
+		konferance.addHotel(hotel);
+
+	}
+
+	public static void tilføjUdflugt(Konference konference, Udflugt udflugt) {
+		konference.addUdflugt(udflugt);
 	}
 
 	public static Konference createKonference(String navn, LocalDate dato,
@@ -44,11 +61,11 @@ public class Controller {
 
 	public static Tilmelding createTildmelding(String navn, String adresse,
 			int telefonnr, boolean fordragsholder, String by, LocalDate ankomst,
-			LocalDate afrejse, Firma firma, String ledsagerNavn,
-			Konference konference) {
+			LocalDate afrejse, String firmanavn, int firmatlf,
+			String ledsagerNavn, Konference konference) {
 		Tilmelding tilmelding = new Tilmelding(navn, adresse, telefonnr,
-				fordragsholder, by, ankomst, afrejse, firma, ledsagerNavn,
-				konference);
+				fordragsholder, by, ankomst, afrejse, firmanavn, firmatlf,
+				ledsagerNavn, konference);
 		Storage.addTilmelding(tilmelding);
 		return tilmelding;
 
@@ -102,9 +119,9 @@ public class Controller {
 		return tilmelding;
 	}
 
-	public static Udflugt createUdflugt(int pris, boolean frokost,
-			LocalDate dato) {
-		Udflugt udflugt = new Udflugt(pris, frokost, dato);
+	public static Udflugt createUdflugt(String navn, int pris, boolean frokost,
+			LocalDate dato, Konference konference) {
+		Udflugt udflugt = new Udflugt(navn, pris, frokost, dato, konference);
 		Storage.addUdflugt(udflugt);
 		return udflugt;
 	}
