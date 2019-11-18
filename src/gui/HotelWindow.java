@@ -41,6 +41,7 @@ public class HotelWindow extends Stage {
 	private TextField txfPris;
 	private TextField txfDpris;
 	private Konference konference;
+	private DeltagerWindow deltagerWindow;
 
 	private Label lblError = new Label("");
 	private final ListView<Hotel> lvwHotel = new ListView<>();
@@ -58,28 +59,33 @@ public class HotelWindow extends Stage {
 		Label lblH = new Label("Hoteller");
 		pane.add(lblH, 0, 0);
 
+		Button deltag = new Button("deltagere");
+		pane.add(deltag, 0, 3);
+
+		deltag.setOnAction(event -> visDeltager());
+
 		Label lbltH = new Label("TILFØJ HOTEL: ");
-		pane.add(lbltH, 0, 3);
+		pane.add(lbltH, 0, 4);
 
 		Label lblNavn = new Label("Navn: ");
-		pane.add(lblNavn, 0, 4);
+		pane.add(lblNavn, 0, 5);
 
 		txfNavn = new TextField();
-		pane.add(txfNavn, 0, 5);
+		pane.add(txfNavn, 0, 6);
 
 		Label lblEPris = new Label("Enkeltværelse Pris:");
-		pane.add(lblEPris, 0, 6);
+		pane.add(lblEPris, 0, 7);
 
 		txfPris = new TextField();
-		pane.add(txfPris, 0, 7);
+		pane.add(txfPris, 0, 8);
 
 		Label lblDpris = new Label("Dobbeltværelse Pris:");
-		pane.add(lblDpris, 0, 8);
+		pane.add(lblDpris, 0, 9);
 
 		txfDpris = new TextField();
-		pane.add(txfDpris, 0, 9);
+		pane.add(txfDpris, 0, 10);
 
-		pane.add(lblError, 0, 10);
+		pane.add(lblError, 0, 11);
 
 		HBox vbox = new HBox();
 
@@ -89,12 +95,13 @@ public class HotelWindow extends Stage {
 
 		Button btnFortrydHotel = new Button("Luk");
 		vbox.getChildren().add(btnFortrydHotel);
+		btnFortrydHotel.setOnAction(event -> hide());
 
 		Button btnTilvalg = new Button("Tilvalg");
 		vbox.getChildren().add(btnTilvalg);
 		btnTilvalg.setOnAction(event -> tilvalgAction());
 
-		pane.add(vbox, 0, 11);
+		pane.add(vbox, 0, 12);
 
 	}
 
@@ -148,12 +155,19 @@ public class HotelWindow extends Stage {
 
 		// Call controller methods
 		Hotel hotel;
-		hotel = Controller.createHotel(txfNavn.getText().trim(), Integer.parseInt(txfPris.getText().trim()),
+		hotel = Controller.createHotel(txfNavn.getText().trim(),
+				Integer.parseInt(txfPris.getText().trim()),
 				Integer.parseInt(txfDpris.getText().trim()));
 		Controller.tilføjHotel(konference, hotel);
 		lblError.setText("");
 		lvwHotel.getItems().setAll(konference.getHoteller());
 
+	}
+
+	public void visDeltager() {
+		deltagerWindow = new DeltagerWindow("Deltagere",
+				lvwHotel.getSelectionModel().getSelectedItem(), konference);
+		deltagerWindow.showAndWait();
 	}
 
 }

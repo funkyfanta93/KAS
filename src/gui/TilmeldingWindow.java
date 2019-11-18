@@ -3,6 +3,8 @@ package gui;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import com.sun.org.apache.bcel.internal.generic.LXOR;
+
 import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.HPos;
@@ -109,7 +111,7 @@ public class TilmeldingWindow extends Stage {
 		Label lblDeltagerinfo = new Label("Deltagerinformation");
 		pane.add(lblDeltagerinfo, 0, 0, 2, 1);
 
-		Label lblTelefon = new Label("Tlf.nr:");
+		Label lblTelefon = new Label("Tlf. nr");
 		pane.add(lblTelefon, 2, 2);
 
 		Label lblNavn = new Label("Navn:");
@@ -133,7 +135,7 @@ public class TilmeldingWindow extends Stage {
 		Label lblFirma = new Label("Firma");
 		pane.add(lblFirma, 0, 6);
 
-		Label lblFirmaCVR = new Label("FirmaCVR");
+		Label lblFirmaCVR = new Label("FirmaTLF");
 		pane.add(lblFirmaCVR, 0, 7);
 
 		Label lblLedsagerNavn = new Label("Ledsager Navn");
@@ -197,7 +199,7 @@ public class TilmeldingWindow extends Stage {
 		pane.add(btnTilmeldDeltager, 0, 18);
 		btnTilmeldDeltager.setOnAction(event -> addTildmelding());
 
-		Label lblSamledePris = new Label("Ledsager");
+		Label lblSamledePris = new Label("Pris Deltagelse");
 		pane.add(lblSamledePris, 0, 19);
 
 		error = new Label("");
@@ -311,6 +313,8 @@ public class TilmeldingWindow extends Stage {
 		String adresse = txfAdresse.getText().trim();
 		Tilmelding tilmelding;
 
+		int firmatlf = 0;
+
 		int test = -1;
 
 		try {
@@ -367,9 +371,9 @@ public class TilmeldingWindow extends Stage {
 				error.setText("FirmaTLF er tom eller tekst");
 				return;
 			}
+			firmatlf = Integer.valueOf(txfFirmaCVR.getText().trim());
 		}
 
-		int firmatlf = Integer.valueOf(txfFirmaCVR.getText().trim());
 		String ledsagerNavn = txfLedsagerNavn.getText().trim();
 
 		if (ledsagerNavn == "" && cbLedsager.isSelected()) {
@@ -421,9 +425,13 @@ public class TilmeldingWindow extends Stage {
 			tilmelding.addTilvalg(tilvalg);
 		}
 
+		tilmelding.setHotel(lvwHoteller.getSelectionModel().getSelectedItem());
+
 		txfDeltagerPris.setText(String.valueOf(tilmelding.beregnPris()));
 
 		btnTilmeldDeltager.setDisable(true);
+
+		System.out.println(tilmelding.getHotel());
 
 	}
 }

@@ -7,6 +7,10 @@ import java.time.temporal.ChronoUnit;
 public class Tilmelding {
 	private String ledsagerNavn;
 	private boolean ledsager;
+	public ArrayList<Udflugt> getUdflugter() {
+		return udflugter;
+	}
+
 	private LocalDate ankomstDato;
 	private LocalDate afrejseDato;
 	private Deltager deltager;
@@ -221,6 +225,11 @@ public class Tilmelding {
 
 	public void setAfrejseDato(LocalDate afrejseDato) {
 		this.afrejseDato = afrejseDato;
+	}
+
+	@Override
+	public String toString() {
+		return deltager.getNavn();
 	}
 
 }

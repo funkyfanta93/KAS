@@ -54,6 +54,7 @@ public class mainApp extends Application {
 	private HotelWindow hotelWindow;
 	private UdflugtWindow udflugtwindow;
 	private TilmeldingWindow tildmeldingWindow;
+	private DeltagerWindow deltagerWindow;
 
 	private void initContent(BorderPane pane) {
 		// pane.setGridLinesVisible(true);
@@ -87,9 +88,20 @@ public class mainApp extends Application {
 		gridpaneCenter.add(konferance, 0, 0);
 
 		Button Bkonference = new Button("Tilføj konference");
-		gridpaneCenter.add(Bkonference, 0, 2, 2, 1);
+		gridpaneCenter.add(Bkonference, 0, 3, 2, 1);
 		Bkonference.setMaxWidth(Double.MAX_VALUE);
 		GridPane.setMargin(Bkonference, new Insets(10, 0, 0, 0));
+
+		Button BSletkonference = new Button("Slet konference");
+		gridpaneCenter.add(BSletkonference, 0, 4, 2, 1);
+		BSletkonference.setMaxWidth(Double.MAX_VALUE);
+		GridPane.setMargin(BSletkonference, new Insets(10, 0, 0, 0));
+
+		BSletkonference.setOnAction(event -> {
+			Storage.removeKonfernce(
+					lvwKonferancer.getSelectionModel().getSelectedItem());
+			lvwKonferancer.getItems().setAll(Storage.getKonference());
+		});
 
 		Bkonference.setOnAction(event -> this.addKonference());
 
@@ -137,6 +149,10 @@ public class mainApp extends Application {
 		lvwKonferancer.getSelectionModel().selectedItemProperty()
 				.addListener(listener);
 
+		Button deltag = new Button("Deltagere");
+		vbox2.getChildren().add(deltag);
+		deltag.setOnAction(event -> visDeltager());
+
 		// --------------------------bottom
 		// ----------------------------------------
 
@@ -166,7 +182,7 @@ public class mainApp extends Application {
 
 	}
 
-	private void konferanceVælger() {
+	private Konference konferanceVælger() {
 
 		Konference selected = lvwKonferancer.getSelectionModel()
 				.getSelectedItem();
@@ -175,6 +191,8 @@ public class mainApp extends Application {
 		} else {
 			Deltagere.clear();
 		}
+
+		return selected;
 	}
 
 	private void addKonference() {
@@ -211,6 +229,11 @@ public class mainApp extends Application {
 		tildmeldingWindow.showAndWait();
 		lvwKonferancer.getItems().setAll(Storage.getKonference());
 
+	}
+
+	public void visDeltager() {
+		deltagerWindow = new DeltagerWindow("Deltagere", konferanceVælger());
+		deltagerWindow.showAndWait();
 	}
 
 }

@@ -97,7 +97,7 @@ public class Konference {
 		}
 	}
 
-	public void removeUdflugt(Tilmelding tilmelding) {
+	public void removeTilmelding(Tilmelding tilmelding) {
 		if (tilmeldinger.contains(tilmelding)) {
 			tilmeldinger.remove(tilmelding);
 		}
